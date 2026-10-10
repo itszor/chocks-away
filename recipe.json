@@ -1,0 +1,90 @@
+{
+ "name": "chocks-away",
+ "title": "Chocks Away (The Fourth Dimension, 1990)",
+ "platform": "acorn-archimedes",
+ "doc": "A recipe: how to turn a user's own copy of the game into a native executable. It holds no game data: the inputs are recognised by content (see $SS/tools/cook.py).",
+ "inputs": {
+  "containers": {
+   "Chocks Away (1990)(Fourth Dimension).zip": "d9347bc4a6dde6e11b81f330904d87c32b75e07d10be794324d04203f7af4ece"
+  },
+  "formats": [
+   "zip",
+   "adf"
+  ]
+ },
+ "discs": [
+  {
+   "name": "disc1",
+   "title": "Disk 1 of 3 (program)",
+   "known_images": [
+    "d15aa8426f9f4b5a399ddc992ee40b73352809da29de944802c07ccf986f9c92"
+   ],
+   "variant_images": [
+    "9614d8a4007db52ab5f4eccd8756e3b74aa350d78d12d69d6ed13adacbfccec1"
+   ],
+   "key_files": {
+    "!Chocks/Code": "96ab3a3dbb92d9458023384a8b7ef223e44b2ff16447f14e63aed3236f67e35b",
+    "!Chocks/Code2": "18bb1366a386bf8d475e4e69cdd2a050d50af860a9daf9cd94b2fe7f42f99c7b",
+    "!Chocks/!Bicode": "efdf59b4f6ad5e0d26fff95ad6e3f548c3ccecf16d39a94803523ca82d42ff59",
+    "!Chocks/Variables": "f02c82b77b288f524dc5cb0b07693b122596f2b90aabbf932c1d4cfe99bc761a",
+    "!Chocks/Variables2": "d2edce0f3360eb9e7e6fec94df4e92b183fe9162ae27be74a9f0724835e32076",
+    "!Chocks/Divide": "9cefd56d270c2335e7b305ffd8b08e508debbb66c066e914ca29610338b6b12f",
+    "!Chocks/ChocksAway": "3d3cfc03e3c43a7558ba343d92b603480361f50e24ef67828556d51444a9dde4",
+    "!Chocks/Mix": "03f33a3304d3c3ab4228ab52565cd2218c42cee950c8ad5d8ce26c8a87632342"
+   },
+   "game_dirs": [
+    "!Chocks"
+   ]
+  },
+  {
+   "name": "disc2",
+   "title": "Disk 2 of 3 (Maps Disk)",
+   "known_images": [
+    "f1ee10f96fc42135789ff8b41e7b5a6918d8fc078622f8dad08103625af04f6b"
+   ],
+   "variant_images": [
+    "11c7ea353baaf4212630aae2643d998fb6549c4119aa8eff3b1b621dd8051b97"
+   ],
+   "key_files": {
+    "!Maps/MissData1": "274d0c592894bde2a0c242b9b494ad95da7b13ed253681b214f2a696ea7c97ef",
+    "!Maps/MissData2": "5d84375faa4c638a9a589ddac1f262bc639607446904dec55ae64bbb9ac5d653",
+    "!Maps/MissData3": "fb3dd42196ba0c4ab45c6c29397bef53a963be0b2d75bdf9468a5328d5f14713",
+    "!Maps/Text": "32db85fc1c272d93cc9448328e3425a555b22ac067452672684954c0535abf1a",
+    "!Maps/Obj3D": "32c4e565d2df1c45e231cbc109dc3ab318e32ad47ba75beb81e068ec41990e98",
+    "!Maps/Pig": "a1cf496ccc72ff6e362a7516f29ee262964f742dd26cc6edc9c632c7538ab4f1",
+    "!Maps/Tree4": "e99afc89628b554097efc3e74ffa855de96a77458711ea04858aa70c12c510d2",
+    "!Maps/Details4": "3985563c6c42621f2a4eaad957f0507e7a84bcf76394042f8621bab689558469"
+   },
+   "game_dirs": [
+    "!Maps"
+   ]
+  },
+  {
+   "name": "disc3",
+   "title": "Disk 3 of 3 (Mission Addon) - not used yet",
+   "optional": true,
+   "known_images": [
+    "a9dd349dfa0f7765dba50862de96636ee2837dcbb6587ab8ac051f582c707e83"
+   ],
+   "key_files": {},
+   "game_dirs": []
+  }
+ ],
+ "build": [
+  "python3 -I \"$COOK\" extract . INPUTS",
+  "python3 -I tools/images.py assemble analyse gen",
+  "make -C recomp"
+ ],
+ "output": "recomp/chocksaway",
+ "requires": {
+  "superspider": "~/stuff/superspider, or $SUPERSPIDER (dune build): analyse, gen, tools/bas2c.py, tools/cook.py",
+  "libroger": "~/stuff/libroger, or make ROGER=...",
+  "host": [
+   "python3",
+   "ocaml + dune",
+   "gcc",
+   "SDL3 (pkg-config sdl3)"
+  ]
+ },
+ "run": "cd recomp && ./chocksaway"
+}

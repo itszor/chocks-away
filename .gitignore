@@ -1,0 +1,23 @@
+# The original discs and everything made from them stay out of the
+# repository: build.sh (recipe.json) remakes them from the user's own copy.
+*.zip
+*.adf
+orig/
+extracted/
+game/
+unpacked/
+analysis/*.json
+analysis/calls.roots
+analysis/all.roots
+recomp/gen/
+recomp/basic.c
+recomp/*.o
+recomp/chocksaway
+recomp/*.events
+recomp/*.vdu
+recomp/*.screen
+recomp/*.regs
+recomp/*.bmp
+recomp/*.wav
+recomp/untranslated.log
+recomp/savedata/
