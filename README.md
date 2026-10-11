@@ -63,6 +63,22 @@ The flight code keeps return addresses in words of its own (`str lr,[pc,#k]`
 follows that. Everything translates: headless runs through the menus, a
 briefing and a flight interpret nothing.
 
+Speed and sound
+---------------
+
+The flight waits for the next vsync between frames and moves everything
+a step a frame, so its speed was the machine's: a frame is about 150,000
+instructions, 17-25 frames a second on an 8MHz ARM2. Translated, it
+would run at 50. game.c sets libroger's CPU speed to 4.5 MIPS, an ARM2's
+(about 21 frames a second, slower in busy scenes as on the original):
+--mips=N to change it, --mips=0 for flat out.
+
+Sound needed two things from libroger: the system clock (OS_Word 1/2,
+which the engine noise is timed by) and voice numbers as RISC OS 3.1
+gives them (its ROM has voices 1-9, so the game's five modules are 10-14,
+and it attaches its channels to 10, 13 and 14 by number). F1/F2 turn the
+volume down/up, F3 the speaker off/on (the game's own keys).
+
 Controls
 --------
 

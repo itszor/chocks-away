@@ -125,6 +125,12 @@ static struct roger_config config = {
     .wimpslot = 600 * 1024,
     .screen_size = 0x28000,                      /* !Changes */
     .interpret_gaps = 1,
+    /* The flight doesn't pace itself beyond waiting for the next vsync,
+     * and moves the planes a step a frame: translated, it would run at 50
+     * frames a second. An 8MHz ARM2's speed (a frame is ~150,000
+     * instructions: 17-25 frames a second, slower in busy scenes, as on
+     * an A3000); --mips=N to change it, 0 for flat out */
+    .mips = 4.5,
     .init = init,
     .arg = game_arg,
     .usage = "  --cheat           the cheat SETUP offers (F at the title picture)\n",
