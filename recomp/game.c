@@ -115,6 +115,12 @@ static void init(void)
 
 static struct roger_config config = {
     .title = "Chocks Away (recompiled)",
+    /* controllers: the stick or D-pad flies (X/C roll, A dive pushing, Z
+     * climb pulling), A fire (V), the right trigger or shoulder throttle up
+     * (left Ctrl), the left ones down (left Shift); a second controller is
+     * player 2 (keypad 2/3 roll, - dive, + climb, Enter fire, 4/1 throttle) */
+    .pad_map = "left=X,right=C,up=A,down=Z,a=V,rt=Left Ctrl,rb=Left Ctrl,lt=Left Shift,lb=Left Shift",
+    .pad2_map = "left=Keypad 2,right=Keypad 3,up=Keypad -,down=Keypad +,a=Keypad Enter,rt=Keypad 4,rb=Keypad 4,lt=Keypad 1,lb=Keypad 1",
     .image_path = "../unpacked/core",
     .image = &recomp_image,
     .modules = modules,
