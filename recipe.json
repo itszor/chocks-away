@@ -2,7 +2,7 @@
  "name": "chocks-away",
  "title": "Chocks Away (The Fourth Dimension, 1990)",
  "platform": "acorn-archimedes",
- "doc": "A recipe: how to turn a user's own copy of the game into a native executable. It holds no game data: the inputs are recognised by content (see $SS/tools/cook.py).",
+ "doc": "A recipe: how to turn a user's own copy of the game into a native executable. It holds no game data: the inputs are recognised by content (see $SS/tools/weave.py).",
  "inputs": {
   "containers": {
    "Chocks Away (1990)(Fourth Dimension).zip": "d9347bc4a6dde6e11b81f330904d87c32b75e07d10be794324d04203f7af4ece"
@@ -71,13 +71,13 @@
   }
  ],
  "build": [
-  "python3 -I \"$COOK\" extract . INPUTS",
+  "python3 -I \"$WEAVE\" extract . INPUTS",
   "python3 -I tools/images.py assemble analyse gen",
   "make -C recomp"
  ],
  "output": "recomp/chocksaway",
  "requires": {
-  "superspider": "~/stuff/superspider, or $SUPERSPIDER (dune build): analyse, gen, tools/bas2c.py, tools/cook.py",
+  "superspider": "~/stuff/superspider, or $SUPERSPIDER (dune build): analyse, gen, tools/bas2c.py, tools/weave.py",
   "libroger": "~/stuff/libroger, or make ROGER=...",
   "host": [
    "python3",

@@ -12,7 +12,7 @@
     images.py roots LOG...   gap entries from --trace-gaps runs -> analysis/*.roots
 
 game/ (!Chocks, !Maps: libroger's appdir) comes from the original discs:
-$SS/tools/cook.py extract, as recipe.json says (../build.sh).
+$SS/tools/weave.py extract, as recipe.json says (../build.sh).
 
 The BASIC (!Chocks.ChocksAway, translated by $SS/tools/bas2c.py into
 recomp/basic.c) starts with DIM C% 549000, and every address in Variables

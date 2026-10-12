@@ -8,7 +8,7 @@ native executable from your own copy of the discs, recognised by content
     ./build.sh "Chocks Away (1990)(Fourth Dimension).zip"    (or the .adf files)
     cd recomp && ./chocksaway
 
-build.sh runs recipe.json's steps with SuperSpider's tools/cook.py
+build.sh runs recipe.json's steps with SuperSpider's tools/weave.py
 (~/stuff/superspider, or $SUPERSPIDER): it finds the program and maps discs
 among the inputs, extracts them, assembles the machine code, analyses and
 translates it, translates the BASIC, and links it all with libroger
@@ -24,7 +24,7 @@ yet.
 
 What it makes:
 
-    extracted/disc1, disc2   $SS/tools/adf_extract.py's output, via cook.py
+    extracted/disc1, disc2   $SS/tools/adf_extract.py's output, via weave.py
     game/                    !Chocks and !Maps from them: libroger's appdir
     unpacked/core            the machine code and tables as the BASIC lays them
                              out, &11170-&903E4 (tools/images.py assemble)
