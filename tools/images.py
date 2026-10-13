@@ -18,7 +18,7 @@ The BASIC (!Chocks.ChocksAway, translated by $SS/tools/bas2c.py into
 recomp/basic.c) starts with DIM C% 549000, and every address in Variables
 (the code, tables, buffers) lies inside that block: the code expects BASIC's
 heap to start at TOP (PAGE &8F00 + the program's 29696 bytes = &10300).
-recomp/bas.c's heap starts there too.
+The BASIC runtime's heap (bas_lomem, recomp/game.c) starts there too.
 """
 import os
 import shutil
@@ -53,7 +53,7 @@ def blobs():
 
 
 def mix_address():
-    """MIX: the BASIC's DIMs in order from LOMEM, as recomp/bas.c makes them
+    """MIX: the BASIC's DIMs in order from LOMEM, as the BASIC runtime makes them
     (DIM x n takes n+1 bytes, rounded up to a word)"""
     a = LOMEM
     for n in (549000, 100, 2400):                # C%, SPARE, HIGHSCORES

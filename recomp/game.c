@@ -13,7 +13,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "bas.h"
+#include "basic_runtime.h"
 
 /* the core image's translation (make regen): Code2, Code and the tables
  * from &11170, as the BASIC lays them out (../unpacked/core). It's
@@ -23,6 +23,13 @@ extern const struct roger_image recomp_image;
 extern int32_t J_I;                              /* the BASIC's J%: the joystick, as !Setup found it */
 
 #include "gen/modules.inc"      /* Joystick and the sound modules; MIX_ADDRESS */
+
+/* the BASIC runtime ($SS/runtime/basic_runtime.c): PAGE, the default, after
+ * !Setup CHAINs it; the heap above the program (PAGE + its 29696 bytes) -
+ * the game's code and tables are at fixed addresses inside the first block,
+ * DIM C% 549000 (../tools/images.py) */
+int32_t bas_page = 0x8F00;
+uint32_t bas_lomem = 0x10300;
 
 /* Mix, which the BASIC *LOADs into DIM MIX 500 and CALLs (the briefing
  * room's picture), translated for that block's address */
@@ -107,6 +114,7 @@ static void setup(void)
 
 static void init(void)
 {
+    bas_dim_clear = 1;                           /* (as this port always has) */
     bas_cli = game_cli;
     setup();
     bas_main();                                  /* CHAIN "adfs::0.$.!Chocks.CHOCKSAWAY" */

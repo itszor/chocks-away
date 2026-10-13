@@ -33,7 +33,7 @@ What it makes:
     recomp/chocksaway        the game
 
 Committed: recipe.json, build.sh, tools/images.py, recomp/ (Makefile,
-game.c, bas.c, bas.h), analysis/core.roots, this file.
+game.c), analysis/core.roots, this file.
 
 How the game is put together
 ----------------------------
@@ -49,8 +49,9 @@ CALLs it: Code (&1ADB0) flies one player, Code2 (&11170) two, split screen;
 both also draw the menu's spinning biplane and the target views.
 
 - recomp/basic.c: the BASIC, translated by $SS/tools/bas2c.py, on
-  recomp/bas.c (Stunt Racer 2000's runtime, its heap moved to this
-  program's TOP, &10300, so the DIMs land where the code expects them).
+  SuperSpider's BASIC runtime ($SS/runtime/basic_runtime.c), its heap
+  (bas_lomem, in game.c) at this program's TOP, &10300, so the DIMs land
+  where the code expects them.
 - recomp/game.c: !Setup by hand; SETUP (the utility that loads Code and
   Code2 and waits for a key on the title, F being the cheat: --cheat);
   the one assembler statement (the flight recorder's directory name); the
