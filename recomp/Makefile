@@ -10,7 +10,9 @@ GEN     := $(wildcard gen/*/code*.c) $(wildcard gen/*/entries.c)
 OBJ     := $(GEN:.c=.o) basic.o basic_runtime.o game.o
 LIBS    := $(shell pkg-config --libs sdl3) -lm -lpthread
 INC     := -I$(ROGER)/include
-PROG    := $(wildcard ../game/!Chocks/ChocksAway,*)
+# the BASIC: !Chocks.ChocksAway (1990, 2000), or the Mark 2's !Chocks.<160>.ChocksAway
+NBSP    := $(shell printf '\302\240')
+PROG    := $(firstword $(wildcard ../game/!Chocks/ChocksAway,* ../game/!Chocks/$(NBSP)/ChocksAway,*))
 
 chocksaway: $(OBJ) $(ROGER)/libroger.a
 	$(CC) $(CFLAGS) -o $@ $(OBJ) $(ROGER)/libroger.a $(LIBS)

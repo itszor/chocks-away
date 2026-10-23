@@ -22,9 +22,50 @@ their disc 1 has a different ChocksAway BASIC, and extracts with errors),
 so they aren't built from. Disc 3 (the Extra Missions add-on) isn't used
 yet.
 
+Or the Chocks Away Compendium [Mark 2 version] (1991), JASPP's
+`... F1045400.zip` or its `.jfd` discs: F1045401 serves as disc 1
+(extracted/disc1_mk2), F1045402 as disc 2. Its disc 1 is protected by
+ZFiler (Peter Gillett's, for the Fourth Dimension): Code, Code2, Variables,
+Variables2 and the BASIC aren't in the catalogue (!Chocks.<160> holds empty
+placeholders), and the module serves them from a table in 256-byte sectors
+an .adf can't hold - a .jfd keeps them, and SuperSpider's
+tools/zfiler.py, which weave.py runs, puts the files in !Chocks.<160>. Code,
+Code2 and the tables are the 1990 ones byte for byte (so are the maps), so
+it's the same translation; the BASIC differs a little: it *LOADs Code and
+Code2 itself (no SETUP, so no cheat prompt: --cheat still works), calls
+ZFiler_Set 1, and quits to the desktop. With the 1990 flight code, it
+isn't a version for faster machines. Its disc 3 is the Extra Missions program (ZFiler too: its own
+Code, 61984 bytes, and BASIC) and disc 4 photographs; neither is used.
+
+Or the Chocks Away Compendium's RISC OS 4 + StrongARM release (2000),
+`Chocks Away Compendium (2000)(4th Dimension)(RO4 + SA Compatible).adf`:
+one 1.6MB disc that serves as discs 1 and 2 (extracted/disc1_sa,
+disc2_sa). !Chocks holds the maps too (!Chocks.Maps), and nearly every
+file is packed for the Fourth Dimension's DeComp module (1993), whose
+*CLoad the BASIC loads them with: a length word, then an LZ bit stream
+(a 512-byte window; tools/images.py unpack() reads it, for the core
+image; at run time the module itself runs, translated). Unpacked, Code,
+Code2, the tables and the maps are the 1990 ones (Land and Map1-4 have
+other bytes at their ends, past what the maps use), so it's the same
+translation again. What's new is around it: !Run loads PowerEater
+(M. Allcorn, 1999), a module that eats a set number of cycles every
+centisecond, and PESet times a BASIC loop to pick that number, so a
+fast machine runs the game at its old speed - here libroger's CPU speed
+(below) does that, and *PEON and *PEOFF do nothing. The BASIC loads
+everything from <Chocks$Dir>, *CLOADs Code and Code2 itself (no SETUP:
+--cheat as for the Mark 2), has DIM C% 526000 rather than 549000 (the
+code and tables still fit), and quits to the desktop, killing its
+modules. The disc's high score file (!Chocks.Maps.Hst, unpacked) has
+missions 1-7 flown. Its Extra Missions (!Extras, and ExtraMiss: an
+archive the ReadMe says to decompress first) aren't used. Its free
+space holds a stray zip's central directory, which SuperSpider's
+weave.py used to mistake the disc for.
+
 What it makes:
 
     extracted/disc1, disc2   $SS/tools/adf_extract.py's output, via weave.py
+                             (disc1_mk2 for the Compendium's; disc1_sa and
+                             disc2_sa, the same disc, for the 2000 one)
     game/                    !Chocks and !Maps from them: libroger's appdir
     unpacked/core            the machine code and tables as the BASIC lays them
                              out, &11170-&903E4 (tools/images.py assemble)
@@ -50,14 +91,18 @@ both also draw the menu's spinning biplane and the target views.
 
 - recomp/basic.c: the BASIC, translated by $SS/tools/bas2c.py, on
   SuperSpider's BASIC runtime ($SS/runtime/basic_runtime.c), its heap
-  (bas_lomem, in game.c) at this program's TOP, &10300, so the DIMs land
-  where the code expects them.
+  (bas_lomem, in game.c) at this program's TOP, &10300 (the later
+  releases' BASIC is shorter: tools/images.py works it out, into
+  recomp/gen/modules.inc), so the DIMs land where the code expects them.
+  DIM doesn't clear its block, as in BASIC, so the core image, loaded
+  up front, stays under DIM C% until the BASIC loads the same bytes.
 - recomp/game.c: !Setup by hand; SETUP (the utility that loads Code and
   Code2 and waits for a key on the title, F being the cheat: --cheat);
   the one assembler statement (the flight recorder's directory name); the
   quit (the BASIC resets the machine: here the program ends).
 - Mix (the briefing room's map) is *LOADed into a DIMmed block and CALLed:
-  translated as an overlay at that block's address (&96D58).
+  translated as an overlay at that block's address (&96D58; &96B74 in
+  the Mark 2, &911FC in 2000, whose *CLOAD game.c tells libroger of).
 
 The flight code keeps return addresses in words of its own (`str lr,[pc,#k]`
 ... `ldr lr,[pc,#j] ; mov pc,lr`); SuperSpider's memory mechanism now
@@ -72,7 +117,8 @@ a step a frame, so its speed was the machine's: a frame is about 150,000
 instructions, 17-25 frames a second on an 8MHz ARM2. Translated, it
 would run at 50. game.c sets libroger's CPU speed to 4.5 MIPS, an ARM2's
 (about 21 frames a second, slower in busy scenes as on the original):
---mips=N to change it, --mips=0 for flat out.
+--mips=N to change it, --mips=0 for flat out. (The 2000 release's
+PowerEater did the same for a StrongARM.)
 
 Sound needed two things from libroger: the system clock (OS_Word 1/2,
 which the engine noise is timed by) and voice numbers as RISC OS 3.1
@@ -94,6 +140,14 @@ and a climb; screenshot-N.bmp):
     10000:click:880:800,10300:release,32000:click:640:100,32300:release,\
     36000:key:5:25000,45000:shot,62000:key:98:3000,66000:shot,75000:shot
 
+Built from the 2000 release there's no title to click past (it waits
+while DeComp unpacks), and missions 1-7 flown mean a mission to choose
+(8) before its briefing:
+
+    ./chocksaway --limit=1.9e9 --full-os --script=12000:click:880:800,12300:release,\
+    34000:click:640:100,34300:release,40000:click:640:100,40300:release,\
+    44000:key:5:25000,53000:shot,70000:key:98:3000,74000:shot,83000:shot
+
 Not done
 --------
 
@@ -103,3 +157,4 @@ Not done
   to and lists adfs::0.$.!BLACKBOX, a separate "black box" disc, and calls
   ADFS_FreeSpace, which libroger doesn't have.
 - Joysticks (the Joystick module's podule).
+- The 2000 release's Extra Missions (!Extras, ExtraMiss).

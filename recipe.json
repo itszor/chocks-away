@@ -5,11 +5,13 @@
  "doc": "A recipe: how to turn a user's own copy of the game into a native executable. It holds no game data: the inputs are recognised by content (see $SS/tools/weave.py).",
  "inputs": {
   "containers": {
-   "Chocks Away (1990)(Fourth Dimension).zip": "d9347bc4a6dde6e11b81f330904d87c32b75e07d10be794324d04203f7af4ece"
+   "Chocks Away (1990)(Fourth Dimension).zip": "d9347bc4a6dde6e11b81f330904d87c32b75e07d10be794324d04203f7af4ece",
+   "Chocks Away Compendium [Mark 2 version] (1991) (The Fourth Dimension) F1045400.zip": "1cce991a70e7926e381f12c2409eae65ef157bad02b897688f080ef492b1d3b0"
   },
   "formats": [
    "zip",
-   "adf"
+   "adf",
+   "jfd"
   ]
  },
  "discs": [
@@ -34,6 +36,49 @@
    },
    "game_dirs": [
     "!Chocks"
+   ],
+   "alternatives": [
+    {
+     "name": "disc1_mk2",
+     "title": "Chocks Away Compendium [Mark 2 version] (1991), disc 1 (program): ZFiler-protected, its code in !Chocks.<160> (the JASPP .jfd keeps the table)",
+     "known_images": [
+      "8f4f757269c7e61ab4cfa433f3ea2c788154cd5261516151d3fc6ea62a62b2d0"
+     ],
+     "key_files": {
+      "!Chocks/\u00a0/Code": "96ab3a3dbb92d9458023384a8b7ef223e44b2ff16447f14e63aed3236f67e35b",
+      "!Chocks/\u00a0/Code2": "18bb1366a386bf8d475e4e69cdd2a050d50af860a9daf9cd94b2fe7f42f99c7b",
+      "!Chocks/!Bicode": "efdf59b4f6ad5e0d26fff95ad6e3f548c3ccecf16d39a94803523ca82d42ff59",
+      "!Chocks/\u00a0/Variables": "f02c82b77b288f524dc5cb0b07693b122596f2b90aabbf932c1d4cfe99bc761a",
+      "!Chocks/\u00a0/Variables2": "d2edce0f3360eb9e7e6fec94df4e92b183fe9162ae27be74a9f0724835e32076",
+      "!Chocks/Divide": "9cefd56d270c2335e7b305ffd8b08e508debbb66c066e914ca29610338b6b12f",
+      "!Chocks/\u00a0/ChocksAway": "826451e121790f2167b52489ab6dbcbbb2e33f6dc542db0385364d6822780b58",
+      "!Chocks/Mix": "03f33a3304d3c3ab4228ab52565cd2218c42cee950c8ad5d8ce26c8a87632342"
+     },
+     "game_dirs": [
+      "!Chocks"
+     ]
+    },
+    {
+     "name": "disc1_sa",
+     "title": "Chocks Away Compendium (2000), RISC OS 4 + StrongARM compatible: one disc, its files packed for DeComp's *CLoad, the maps in !Chocks.Maps",
+     "known_images": [
+      "34eb3b282c08333be9d68e70eb380ba0a32561c210ffb6e8321358c73c115535"
+     ],
+     "key_files": {
+      "!Chocks/Code": "f2c1901ae1c09a6a5500431c4267f4dd76aa51237545d2bc9e7021b7f8034e55",
+      "!Chocks/Code2": "96e53c77fb9af8aeecfaf2b9c9174b1e13dad9b9175d27b73d95d2a3d5ccf1cd",
+      "!Chocks/!Bicode": "c2361521e640424b9f3320891963346f3d6c9937ac0fc982307585fd40777f5e",
+      "!Chocks/Variables": "c80cdadd3ed39f62c94499ce4623688f6bbc88ec894dd0caf5cd9adb273be300",
+      "!Chocks/Variables2": "34d3e10f30a4d20f9e277b235b7dff8ccb15c030919efabe29fb742d1ca2c708",
+      "!Chocks/Divide": "85e5d5777dd4339bae01439ea0b108541f020baf02dcef1e1bbe79cfb4951f56",
+      "!Chocks/ChocksAway": "3dafbfe8cb619ae526035f1200e347264b6f8734f9b1788897b72cfeca3d2524",
+      "!Chocks/Mix": "ceb39a18ef0e5ff54ee0df35de8504a242e68b86cf982c65a79e46bc23f80298",
+      "!Chocks/Sounds/DeComp": "3a65a40b6f96743034f45b1e6debcdf8f9f898ed471561d698db3f19129cc7bf"
+     },
+     "game_dirs": [
+      "!Chocks"
+     ]
+    }
    ]
   },
   {
@@ -43,7 +88,8 @@
     "f1ee10f96fc42135789ff8b41e7b5a6918d8fc078622f8dad08103625af04f6b"
    ],
    "variant_images": [
-    "11c7ea353baaf4212630aae2643d998fb6549c4119aa8eff3b1b621dd8051b97"
+    "11c7ea353baaf4212630aae2643d998fb6549c4119aa8eff3b1b621dd8051b97",
+    "21345090b3a2c34f0939aebed5e30258756639257c3ed99ad01790037274b2e5"
    ],
    "key_files": {
     "!Maps/MissData1": "274d0c592894bde2a0c242b9b494ad95da7b13ed253681b214f2a696ea7c97ef",
@@ -57,6 +103,26 @@
    },
    "game_dirs": [
     "!Maps"
+   ],
+   "alternatives": [
+    {
+     "name": "disc2_sa",
+     "title": "Chocks Away Compendium (2000): the same disc, its maps (!Chocks.Maps, which come with !Chocks)",
+     "known_images": [
+      "34eb3b282c08333be9d68e70eb380ba0a32561c210ffb6e8321358c73c115535"
+     ],
+     "key_files": {
+      "!Chocks/Maps/MissData1": "dc9e7036756cbc6564f7a0099d242cc8970d882b78e7146acfbd5f7ed2bc03ef",
+      "!Chocks/Maps/MissData2": "7fb79c21390878938d27aa3f5f80e4597b8158e3774547ecd86661875ff7b0f6",
+      "!Chocks/Maps/MissData3": "7d42e5fd3250f3791059a5b7286e18f65aafe88fb388583ed9cc335a2a3dbc48",
+      "!Chocks/Maps/Text": "bc9cfe70fc6130f6909679f9746a93bdad70110ce1cd7cfdfe15bb08fb6db6c8",
+      "!Chocks/Maps/Obj3D": "1d833d47e3f4789c8aca12dca8a9f9fe0ae6d3a7bc3bbbbd9eb32d557e965489",
+      "!Chocks/Maps/Pig": "31a0f1a93b60b0be023351557ea2bb9b56aea5a86f516592b9a5ee2cfc8f4494",
+      "!Chocks/Maps/Tree4": "4799f7f9a122c4e63b31499ee29eddcd1d7dd0f810033a9961112d7be09daea5",
+      "!Chocks/Maps/Details4": "78c628e43e4330196e35ea4708ba3eb11345948729fdce22566d95381d26b8f3"
+     },
+     "game_dirs": []
+    }
    ]
   },
   {
@@ -67,7 +133,10 @@
     "a9dd349dfa0f7765dba50862de96636ee2837dcbb6587ab8ac051f582c707e83"
    ],
    "key_files": {},
-   "game_dirs": []
+   "game_dirs": [],
+   "variant_images": [
+    "34d1d5dfca07233c6d4c1a30bf7979a3b34195192d567575f2fe85c0e191c66c"
+   ]
   }
  ],
  "build": [
